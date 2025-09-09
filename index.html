@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dheer Shah — Actuarial Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <header class="sticky top-0 z-10 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-xl sm:text-2xl font-bold">Dheer Shah — Actuarial Portfolio</h1>
+      <nav class="text-sm flex gap-4">
+        <a class="hover:underline" href="#about">About</a>
+        <a class="hover:underline" href="#projects">Projects</a>
+        <a class="hover:underline" href="https://github.com/dheershah01/Actuarial-Portfolio" target="_blank">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-8 space-y-12">
+    <section id="about" class="space-y-3">
+      <h2 class="text-lg font-semibold">About Me</h2>
+      <p class="text-gray-700">
+        I'm a Student at Warwick and an aspiring Actuary with a focus on IFRS 17, Solvency II, and analytics tools like Excel, Python, R, and Power BI.
+      </p>
+    </section>
+
+    <section id="projects" class="space-y-4">
+      <h2 class="text-lg font-semibold">Featured Projects</h2>
+      <ul class="list-disc list-inside space-y-2 text-gray-800">
+        <li>
+          <a class="text-blue-600 hover:underline" href="https://github.com/dheershah01/Actuarial-Portfolio/tree/main/01_Data_Cleaning_Excel" target="_blank">
+            🗂 Data Quality Checks – Excel
+          </a>
+        </li>
+        <li>
+          <a class="text-blue-600 hover:underline" href="https://github.com/dheershah01/Actuarial-Portfolio/tree/main/02_Data_Cleaning_Python" target="_blank">
+            🐍 Data Quality Checks – Python
+          </a>
+        </li>
+        <li>
+          <a class="text-blue-600 hover:underline" href="https://github.com/dheershah01/Actuarial-Portfolio/tree/main/03_Workflow_Dashboard_PowerBI" target="_blank">
+            📊 Workflow Automation Dashboard – Power BI
+          </a>
+        </li>
+        <li>
+          <a class="text-blue-600 hover:underline" href="https://github.com/dheershah01/Actuarial-Portfolio/tree/main/04_IBNR_Reserving_Excel" target="_blank">
+            📈 IBNR Reserving Model – Excel
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="border-t py-6 text-center text-sm text-gray-500">
+    © <span id="year"></span> Dheer Shah — Built with GitHub Pages
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
