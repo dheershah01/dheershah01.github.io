@@ -15,17 +15,14 @@
       <p class="mt-4 text-lg sm:text-xl opacity-90">
         Student @ University of Warwick | IFRS 17 | Solvency II | Insurance & Pensions Data Analytics
       </p>
-      <p class="mt-1 text-sm sm:text-base opacity-80">
-        Excel • R • Python • Power BI
-      </p>
       <div class="mt-6 flex justify-center gap-4">
+        <a href="https://www.linkedin.com/in/dheer-shah" target="_blank"
+           class="bg-white text-blue-600 font-semibold px-6 py-2 rounded-full shadow hover:bg-gray-100">
+          LinkedIn ↗
+        </a>
         <a href="https://github.com/dheershah01/Actuarial-Portfolio" target="_blank"
            class="bg-white text-blue-600 font-semibold px-6 py-2 rounded-full shadow hover:bg-gray-100">
           GitHub ↗
-        </a>
-        <a href="https://www.linkedin.com/in/dheershah01" target="_blank"
-           class="bg-blue-800 text-white font-semibold px-6 py-2 rounded-full shadow hover:bg-blue-900">
-          LinkedIn ↗
         </a>
       </div>
     </div>
@@ -41,24 +38,11 @@
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="bg-white rounded-2xl shadow-lg p-6">
-      <h2 class="text-2xl font-bold mb-4 text-blue-700">🛠 Skills</h2>
-      <div class="flex flex-wrap gap-2">
-        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">IFRS 17 Knowledge & Application</span>
-        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Solvency II</span>
-        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">R</span>
-        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Excel</span>
-        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Python for Data Analysis</span>
-        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Power BI</span>
-        <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-medium">Statistical & Financial Modelling</span>
-      </div>
-    </section>
-
     <!-- Projects Section -->
     <section id="projects">
       <h2 class="text-2xl font-bold mb-6 text-blue-700">🚀 Featured Projects</h2>
       <div class="grid gap-6 sm:grid-cols-2">
+        <!-- Project Card -->
         <a href="https://github.com/dheershah01/Actuarial-Portfolio/tree/main/01_Data_Cleaning_Excel" target="_blank"
            class="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
           <h3 class="text-lg font-semibold text-blue-600">🗂 Data Quality Checks – Excel</h3>
@@ -96,12 +80,38 @@
     // Dynamic year
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // Clean unwanted characters & reformat sections
+    function cleanReadme(md) {
+      // Remove broken emojis
+      md = md.replace(/ðŸ[\S]*/g, "");
+
+      // Format About Me as heading + list
+      md = md.replace(/About Me/gi, "## **About Me**");
+      md = md.replace(/Student at Warwick.*?\n/g, "- Student at Warwick, aspiring Actuary\n");
+      md = md.replace(/Actuarial exam exemptions.*?\n/g, "- Actuarial exam exemptions target: CS1, CM1, CB1, CB2\n");
+      md = md.replace(/Skills.*?\n/g, "- Skills: IFRS 17, Solvency II, Excel, Python, R, Power BI\n");
+      md = md.replace(/Connect with me.*?\n/g, "- Connect with me on LinkedIn\n");
+
+      // Format Actuarial Portfolio as heading + list
+      md = md.replace(/Actuarial Portfolio/gi, "## **Actuarial Portfolio**");
+      md = md.replace(/This portfolio showcases.*?\n/g, "- This portfolio showcases a selection of actuarial and data projects completed during my internships and academic work.\n");
+      md = md.replace(/Each project.*?\n/g, "- Each project has been re-created with anonymised/synthetic data to protect confidentiality.\n");
+      md = md.replace(/Projects included:/gi, "- **Projects included:**");
+
+      return md;
+    }
+
     // Load README.md dynamically via GitHub API
     (async () => {
       try {
         const res = await fetch('https://api.github.com/repos/dheershah01/Actuarial-Portfolio/readme');
         const data = await res.json();
-        const md = atob(data.content);
+        let md = atob(data.content);
+
+        // Clean & reformat
+        md = cleanReadme(md);
+
+        // Render with marked.js
         document.getElementById('readme-content').innerHTML = marked.parse(md);
       } catch (err) {
         document.getElementById('readme-content').innerHTML = "<p>⚠️ Failed to load README.</p>";
